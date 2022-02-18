@@ -24,7 +24,11 @@ const validateToken = (req, res, next) => {
 const validateUserLoggedIn = (req, res, next) => {
   const accessToken = req.header("accessToken");
 
-  if (accessToken === "null") {
+  try {
+    if (accessToken.includes("null")) {
+      return next();
+    }
+  } catch (e) {
     return next();
   }
 
