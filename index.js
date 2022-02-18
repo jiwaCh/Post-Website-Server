@@ -1,36 +1,39 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const cors = require("cors");
+require("dotenv").config();
 // const cookieParser = require("cookie-parser");
+
+// use  "npm devStart" for you local host
 
 app.use(express.json()); //method inbuilt in express() to recognize the incoming Request Object as a JSON Object
 app.use(cors());
 // app.use(cookieParser);
 
 //Router
-const postRouter = require("./routes/Posts")
-app.use("/posts", postRouter) // so it becomes http://localhost:3001/posts
+const postRouter = require("./routes/Posts");
+app.use("/posts", postRouter); // so it becomes http://localhost:3001/posts
 
-const commentsRouter = require("./routes/Comments")
-app.use("/comments", commentsRouter) // so it becomes http://localhost:3001/comments
+const commentsRouter = require("./routes/Comments");
+app.use("/comments", commentsRouter); // so it becomes http://localhost:3001/comments
 
-const usersRouter = require("./routes/Users")
-app.use("/auth", usersRouter) // so it becomes http://localhost:3001/auth
+const usersRouter = require("./routes/Users");
+app.use("/auth", usersRouter); // so it becomes http://localhost:3001/auth
 
-
-const likesRouter = require("./routes/Likes")
-app.use("/likes", likesRouter) // so it becomes http://localhost:3001/auth
-
+const likesRouter = require("./routes/Likes");
+app.use("/likes", likesRouter); // so it becomes http://localhost:3001/auth
 
 // get the database models
-const db = require('./models')
+const db = require("./models");
 
 // create the database
-db.sequelize.sync().then(()=>{
-    app.listen(3001, ()=>{
-        console.log("Server running port 3001");
+db.sequelize
+  .sync()
+  .then(() => {
+    app.listen(process.env.PORT || 3001, () => {
+      console.log("Server running port 3001");
     });
-}).catch(errorMessage  => {
+  })
+  .catch((errorMessage) => {
     console.error("Sequelize ERROR message:" + errorMessage);
-});
-
+  });
