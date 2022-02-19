@@ -9,7 +9,7 @@ router.get("/:postId", async (req, res) => {
   res.json(comments); // this is returned when calling axios as a varible. in our instance, this is response varible (example below)
 });
 
-// axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
+// axios.get(`https://post-website-server.herokuapp.com/comments/${id}`).then((response) => {
 //   setComment(response.data);
 // });
 
@@ -22,10 +22,10 @@ router.post("/", validateToken, async (req, res) => {
 
 router.delete("/:commentId", validateToken, async (req, res) => {
   const commentId = req.params.commentId;
-  console.log("commentId")
-  console.log(commentId)
+  console.log("commentId");
+  console.log(commentId);
   await Comments.destroy({ where: { id: commentId } });
-  console.log("workinggg?????????????")
+  console.log("workinggg?????????????");
   res.send("comment deleted");
 });
 

@@ -12,16 +12,16 @@ app.use(cors());
 
 //Router
 const postRouter = require("./routes/Posts");
-app.use("/posts", postRouter); // so it becomes http://localhost:3001/posts
+app.use("/posts", postRouter); // so it becomes https://post-website-server.herokuapp.com/posts
 
 const commentsRouter = require("./routes/Comments");
-app.use("/comments", commentsRouter); // so it becomes http://localhost:3001/comments
+app.use("/comments", commentsRouter); // so it becomes https://post-website-server.herokuapp.com/comments
 
 const usersRouter = require("./routes/Users");
-app.use("/auth", usersRouter); // so it becomes http://localhost:3001/auth
+app.use("/auth", usersRouter); // so it becomes https://post-website-server.herokuapp.com/auth
 
 const likesRouter = require("./routes/Likes");
-app.use("/likes", likesRouter); // so it becomes http://localhost:3001/auth
+app.use("/likes", likesRouter); // so it becomes https://post-website-server.herokuapp.com/auth
 
 // get the database models
 const db = require("./models");
