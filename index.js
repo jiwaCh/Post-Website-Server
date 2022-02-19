@@ -14,6 +14,16 @@ const corsOptions = {
 
 app.use(express.json()); //method inbuilt in express() to recognize the incoming Request Object as a JSON Object
 app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested With, Content-Type, Accept"
+  );
+  next();
+});
+
 // app.use(cookieParser);
 
 //Router
@@ -36,8 +46,8 @@ const db = require("./models");
 db.sequelize
   .sync()
   .then(() => {
-    app.listen(process.env.PORT || 3001, () => {
-      console.log("Server running port 3001");
+    app.listen(process.env.PORT || 3001, (response) => {
+      console.log("Server running port " + response);
     });
   })
   .catch((errorMessage) => {
