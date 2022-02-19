@@ -9,7 +9,7 @@ router.get("/:postId", async (req, res) => {
   res.json(comments); // this is returned when calling axios as a varible. in our instance, this is response varible (example below)
 });
 
-// axios.get(`https://post-website-server.herokuapp.com/comments/${id}`).then((response) => {
+// axios.get(`https://cors-anywhere.herokuapp.com/https://post-website-server.herokuapp.com/comments/${id}`).then((response) => {
 //   setComment(response.data);
 // });
 
